@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Specification-Title: autobuild
+Specification-Vendor: Replit AI
+Specification-Version: 1
+Implementation-Title: autobuild
+Implementation-Version: 1.0.0
+Implementation-Vendor: Replit AI
+Implementation-Timestamp: 2025-12-07T12:48:59+0000
+
