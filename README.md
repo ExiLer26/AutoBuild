@@ -49,6 +49,9 @@ The compiled JAR will be in `build/libs/autobuild-1.0.0.jar`
 ## Controls
 - **H** key: Toggle hitbox visibility
 - **Arrow Up/Down**: Move fixed hitbox up/down
+- **K** Key: AutoBuild Menu Open
+- **J** Key: AutoBuild On/Off
+- **Arrow Left-Right** Key: You can move the build left and right with the directional keys. 
 
 ## Configuration
 Mod settings are stored in `config/autobuild-client.toml`
