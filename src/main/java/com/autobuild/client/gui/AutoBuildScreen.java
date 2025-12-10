@@ -72,7 +72,7 @@ public class AutoBuildScreen extends Screen {
         this.addRenderableWidget(Button.builder(
                 Component.translatable("screen.autobuild.speed", buildSpeed),
                 button -> {
-                    int newSpeed = buildSpeed >= 100 ? 1 : buildSpeed + 1;
+                    int newSpeed = buildSpeed >= 10 ? 1 : buildSpeed + 1;
                     AutoBuildConfig.setBuildSpeed(newSpeed);
                     rebuildWidgets();
                 }).bounds(centerX - BUTTON_WIDTH / 2, startY + 30, BUTTON_WIDTH, BUTTON_HEIGHT)
