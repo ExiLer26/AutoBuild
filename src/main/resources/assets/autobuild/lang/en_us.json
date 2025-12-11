@@ -12,6 +12,7 @@
     "screen.autobuild.tab.home": "Home",
     "screen.autobuild.tab.json": "Structures",
     "screen.autobuild.tab.settings": "Settings",
+    "screen.autobuild.tab.create": "Create Structure",
 
     "screen.autobuild.toggle.on": "AutoBuild: ON",
     "screen.autobuild.toggle.off": "AutoBuild: OFF",
@@ -31,6 +32,19 @@
     "screen.autobuild.noselection": "None",
     "screen.autobuild.refresh": "Refresh Structures",
     "screen.autobuild.nostructures": "No structures found",
+
+    "screen.autobuild.create.nopos1": "Pos1: Not set (Left-click with axe)",
+    "screen.autobuild.create.nopos2": "Pos2: Not set (Right-click with axe)",
+    "screen.autobuild.create.name": "Structure Name",
+    "screen.autobuild.create.name.hint": "Enter structure name...",
+    "screen.autobuild.create.save": "Save Structure",
+    "screen.autobuild.create.save.tooltip": "Save selected area as JSON",
+    "screen.autobuild.create.clear": "Clear Selection",
+    "screen.autobuild.create.blockcount": "Block Count: %d",
+    "screen.autobuild.create.success": "Structure '%s' saved with %d blocks",
+    "screen.autobuild.create.error.noname": "Error: Structure name cannot be empty",
+    "screen.autobuild.create.error.noselection": "Error: Select pos1 and pos2 with axe first",
+    "screen.autobuild.create.error.empty": "Error: No blocks found in selected area",
 
     "command.autobuild.new.success.selection": "Created structure '%s' with %d blocks from selection",
     "command.autobuild.new.success.empty": "Created empty structure '%s' (use stick to select an area first)",
