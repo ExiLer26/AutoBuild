@@ -65,6 +65,26 @@ public class KeyInputHandler {
                     true
                 );
                 return;
+            } else if (event.getKey() == GLFW.GLFW_KEY_KP_8) {
+                BlockPos current = SelectionManager.getFixedHitboxOrigin();
+                BlockPos newPos = current.north();
+                SelectionManager.setFixedHitboxOrigin(newPos);
+
+                mc.player.displayClientMessage(
+                    Component.literal("Hitbox ileri taşındı: " + newPos.toShortString()),
+                    true
+                );
+                return;
+            } else if (event.getKey() == GLFW.GLFW_KEY_KP_5) {
+                BlockPos current = SelectionManager.getFixedHitboxOrigin();
+                BlockPos newPos = current.south();
+                SelectionManager.setFixedHitboxOrigin(newPos);
+
+                mc.player.displayClientMessage(
+                    Component.literal("Hitbox geri taşındı: " + newPos.toShortString()),
+                    true
+                );
+                return;
             }
         }
     }
