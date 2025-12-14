@@ -74,5 +74,12 @@
     "message.autobuild.hitbox.on": "Hitbox görünürlüğü: AÇIK",
     "message.autobuild.hitbox.off": "Hitbox görünürlüğü: KAPALI",
     "message.autobuild.toggle.on": "OtomatikYapı açıldı",
-    "message.autobuild.toggle.off": "OtomatikYapı kapatıldı"
+    "message.autobuild.toggle.off": "OtomatikYapı kapatıldı",
+"key.autobuild.hitbox.forward": "Hitbox ileri taşındı",
+"key.autobuild.hitbox.back": "Hitbox geri taşındı",
+"key.autobuild.hitbox.left": "Hitbox sol taşındı",
+"key.autobuild.hitbox.right": "Hitbox sağ taşındı",
+"key.autobuild.hitbox.up": "Hitbox yukarı taşındı",
+"key.autobuild.hitbox.down": "Hitbox aşağı taşındı"
+
 }

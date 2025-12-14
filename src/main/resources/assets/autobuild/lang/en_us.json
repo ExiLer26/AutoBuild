@@ -69,5 +69,12 @@
     "message.autobuild.hitbox.on": "Hitbox visibility: ON",
     "message.autobuild.hitbox.off": "Hitbox visibility: OFF",
     "message.autobuild.toggle.on": "AutoBuild enabled",
-    "message.autobuild.toggle.off": "AutoBuild disabled"
+    "message.autobuild.toggle.off": "AutoBuild disabled",
+"key.autobuild.hitbox.forward": "Hitbox moved forward",
+"key.autobuild.hitbox.back": "Hitbox moved back",
+"key.autobuild.hitbox.left": "Hitbox left moved",
+"key.autobuild.hitbox.right": "Hitbox moved right",
+"key.autobuild.hitbox.up": "Hitbox moved up",
+"key.autobuild.hitbox.down": "Hitbox moved down"
+
 }
