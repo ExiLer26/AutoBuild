@@ -1,4 +1,5 @@
 package com.autobuild.client.handler;
+import static com.autobuild.client.handler.KeyBindingHandler.*;
 
 import com.autobuild.common.config.AutoBuildConfig;
 import net.minecraft.client.Minecraft;
@@ -20,72 +21,54 @@ public class KeyInputHandler {
             return;
         }
 
-        if (event.getAction() != GLFW.GLFW_PRESS) {
-            return;
-        }
 
-        if (SelectionManager.hasFixedHitbox()) {
-            if (event.getKey() == GLFW.GLFW_KEY_UP) {
-                BlockPos current = SelectionManager.getFixedHitboxOrigin();
-                BlockPos newPos = current.above();
-                SelectionManager.setFixedHitboxOrigin(newPos);
+if (hitboxUpKey.consumeClick()) {
+    BlockPos newPos = SelectionManager.getFixedHitboxOrigin().above();
+    SelectionManager.setFixedHitboxOrigin(newPos);
+    mc.player.displayClientMessage(
+        Component.literal("Hitbox yukarı taşındı: " + newPos.toShortString()), true);
+    return;
+}
 
-                mc.player.displayClientMessage(
-                    Component.literal("Hitbox yukarı taşındı: " + newPos.toShortString()),
-                    true
-                );
-                return;
-            } else if (event.getKey() == GLFW.GLFW_KEY_DOWN) {
-                BlockPos current = SelectionManager.getFixedHitboxOrigin();
-                BlockPos newPos = current.below();
-                SelectionManager.setFixedHitboxOrigin(newPos);
+if (hitboxDownKey.consumeClick()) {
+    BlockPos newPos = SelectionManager.getFixedHitboxOrigin().below();
+    SelectionManager.setFixedHitboxOrigin(newPos);
+    mc.player.displayClientMessage(
+        Component.literal("Hitbox aşağı taşındı: " + newPos.toShortString()), true);
+    return;
+}
 
-                mc.player.displayClientMessage(
-                    Component.literal("Hitbox aşağı taşındı: " + newPos.toShortString()),
-                    true
-                );
-                return;
-            } else if (event.getKey() == GLFW.GLFW_KEY_LEFT) {
-                BlockPos current = SelectionManager.getFixedHitboxOrigin();
-                BlockPos newPos = current.west();
-                SelectionManager.setFixedHitboxOrigin(newPos);
+if (hitboxLeftKey.consumeClick()) {
+    BlockPos newPos = SelectionManager.getFixedHitboxOrigin().west();
+    SelectionManager.setFixedHitboxOrigin(newPos);
+    mc.player.displayClientMessage(
+        Component.literal("Hitbox sola taşındı: " + newPos.toShortString()), true);
+    return;
+}
 
-                mc.player.displayClientMessage(
-                    Component.literal("Hitbox sola taşındı: " + newPos.toShortString()),
-                    true
-                );
-                return;
-            } else if (event.getKey() == GLFW.GLFW_KEY_RIGHT) {
-                BlockPos current = SelectionManager.getFixedHitboxOrigin();
-                BlockPos newPos = current.east();
-                SelectionManager.setFixedHitboxOrigin(newPos);
+if (hitboxRightKey.consumeClick()) {
+    BlockPos newPos = SelectionManager.getFixedHitboxOrigin().east();
+    SelectionManager.setFixedHitboxOrigin(newPos);
+    mc.player.displayClientMessage(
+        Component.literal("Hitbox sağa taşındı: " + newPos.toShortString()), true);
+    return;
+}
 
-                mc.player.displayClientMessage(
-                    Component.literal("Hitbox sağa taşındı: " + newPos.toShortString()),
-                    true
-                );
-                return;
-            } else if (event.getKey() == GLFW.GLFW_KEY_KP_8) {
-                BlockPos current = SelectionManager.getFixedHitboxOrigin();
-                BlockPos newPos = current.north();
-                SelectionManager.setFixedHitboxOrigin(newPos);
+if (hitboxForwardKey.consumeClick()) {
+    BlockPos newPos = SelectionManager.getFixedHitboxOrigin().north();
+    SelectionManager.setFixedHitboxOrigin(newPos);
+    mc.player.displayClientMessage(
+        Component.literal("Hitbox ileri taşındı: " + newPos.toShortString()), true);
+    return;
+}
 
-                mc.player.displayClientMessage(
-                    Component.literal("Hitbox ileri taşındı: " + newPos.toShortString()),
-                    true
-                );
-                return;
-            } else if (event.getKey() == GLFW.GLFW_KEY_KP_5) {
-                BlockPos current = SelectionManager.getFixedHitboxOrigin();
-                BlockPos newPos = current.south();
-                SelectionManager.setFixedHitboxOrigin(newPos);
+if (hitboxBackKey.consumeClick()) {
+    BlockPos newPos = SelectionManager.getFixedHitboxOrigin().south();
+    SelectionManager.setFixedHitboxOrigin(newPos);
+    mc.player.displayClientMessage(
+        Component.literal("Hitbox geri taşındı: " + newPos.toShortString()), true);
+    return;
+}
 
-                mc.player.displayClientMessage(
-                    Component.literal("Hitbox geri taşındı: " + newPos.toShortString()),
-                    true
-                );
-                return;
             }
         }
-    }
-}
