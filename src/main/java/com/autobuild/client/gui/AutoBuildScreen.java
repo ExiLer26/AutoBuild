@@ -176,6 +176,18 @@ public class AutoBuildScreen extends Screen {
 
     // ---------------- SETTINGS TAB ----------------
     private void initSettingsTab(int centerX, int startY) {
+        boolean protection = AutoBuildConfig.isAntiCheatProtection();
+        Component protectionText = protection ? 
+                Component.translatable("screen.autobuild.protection.on") : 
+                Component.translatable("screen.autobuild.protection.off");
+        
+        this.addRenderableWidget(Button.builder(protectionText, button -> {
+            AutoBuildConfig.setAntiCheatProtection(!AutoBuildConfig.isAntiCheatProtection());
+            rebuildWidgets();
+        }).bounds(centerX - BUTTON_WIDTH / 2, startY, BUTTON_WIDTH, BUTTON_HEIGHT)
+                .tooltip(Tooltip.create(Component.translatable("screen.autobuild.protection.tooltip")))
+                .build());
+
         this.addRenderableWidget(Button.builder(
                 Component.translatable("screen.autobuild.speed.decrease"),
                 button -> {
@@ -184,11 +196,11 @@ public class AutoBuildScreen extends Screen {
                         AutoBuildConfig.setBuildSpeed(current - 1);
                         rebuildWidgets();
                     }
-                }).bounds(centerX - 80, startY, 30, BUTTON_HEIGHT).build());
+                }).bounds(centerX - 80, startY + 30, 30, BUTTON_HEIGHT).build());
 
         this.addRenderableWidget(Button.builder(
                 Component.literal(String.valueOf(AutoBuildConfig.getBuildSpeed())), button -> {})
-                .bounds(centerX - 45, startY, 90, BUTTON_HEIGHT).build());
+                .bounds(centerX - 45, startY + 30, 90, BUTTON_HEIGHT).build());
 
         this.addRenderableWidget(Button.builder(
                 Component.translatable("screen.autobuild.speed.increase"),
@@ -198,7 +210,7 @@ public class AutoBuildScreen extends Screen {
                         AutoBuildConfig.setBuildSpeed(current + 1);
                         rebuildWidgets();
                     }
-                }).bounds(centerX + 50, startY, 30, BUTTON_HEIGHT).build());
+                }).bounds(centerX + 50, startY + 30, 30, BUTTON_HEIGHT).build());
 
         this.addRenderableWidget(Button.builder(
                 Component.translatable("screen.autobuild.proximity.decrease"),
@@ -208,11 +220,11 @@ public class AutoBuildScreen extends Screen {
                         AutoBuildConfig.setProximityDistance(current - 1);
                         rebuildWidgets();
                     }
-                }).bounds(centerX - 80, startY + 30, 30, BUTTON_HEIGHT).build());
+                }).bounds(centerX - 80, startY + 60, 30, BUTTON_HEIGHT).build());
 
         this.addRenderableWidget(Button.builder(
                 Component.literal(String.valueOf(AutoBuildConfig.getProximityDistance())), button -> {})
-                .bounds(centerX - 45, startY + 30, 90, BUTTON_HEIGHT).build());
+                .bounds(centerX - 45, startY + 60, 90, BUTTON_HEIGHT).build());
 
         this.addRenderableWidget(Button.builder(
                 Component.translatable("screen.autobuild.proximity.increase"),
@@ -222,7 +234,7 @@ public class AutoBuildScreen extends Screen {
                         AutoBuildConfig.setProximityDistance(current + 1);
                         rebuildWidgets();
                     }
-                }).bounds(centerX + 50, startY + 30, 30, BUTTON_HEIGHT).build());
+                }).bounds(centerX + 50, startY + 60, 30, BUTTON_HEIGHT).build());
     }
 
     // ---------------- CREATE STRUCTURE TAB ----------------

@@ -12,6 +12,7 @@ public class AutoBuildConfig {
     public static final ForgeConfigSpec.ConfigValue<String> SELECTED_STRUCTURE;
     public static final ForgeConfigSpec.BooleanValue HITBOX_VISIBLE;
     public static final ForgeConfigSpec.IntValue HITBOX_Y_OFFSET;
+    public static final ForgeConfigSpec.BooleanValue ANTI_CHEAT_PROTECTION;
 
     static {
         BUILDER.push("autobuild");
@@ -40,9 +41,21 @@ public class AutoBuildConfig {
                 .comment("Offset for hitbox vertical position")
                 .defineInRange("hitboxYOffset", 0, -10, 10);
 
+        ANTI_CHEAT_PROTECTION = BUILDER
+                .comment("Enable anti-cheat protection (jitter, fake rotation, arm swing)")
+                .define("antiCheatProtection", true);
+
         BUILDER.pop();
 
         CLIENT_SPEC = BUILDER.build();
+    }
+
+    public static boolean isAntiCheatProtection() {
+        return ANTI_CHEAT_PROTECTION.get();
+    }
+
+    public static void setAntiCheatProtection(boolean protection) {
+        ANTI_CHEAT_PROTECTION.set(protection);
     }
 
     public static boolean isEnabled() {

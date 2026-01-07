@@ -22,7 +22,12 @@ public class StructureManager {
 
     public static void ensureDirectoryExists() {
         try {
-            autobuildFolder = Minecraft.getInstance().gameDirectory.toPath().resolve("autobuild");
+            // Using a safer way to get the game directory that works on both client and server if needed
+            // But since this is a client mod, we'll keep it simple but add null checks
+            Minecraft mc = Minecraft.getInstance();
+            if (mc == null || mc.gameDirectory == null) return;
+            
+            autobuildFolder = mc.gameDirectory.toPath().resolve("autobuild");
             if (!Files.exists(autobuildFolder)) {
                 Files.createDirectories(autobuildFolder);
                 AutoBuild.LOGGER.info("Created autobuild directory at: " + autobuildFolder);

@@ -26,6 +26,9 @@ import net.minecraftforge.fml.common.Mod;
 
 import java.util.Map;
 
+import net.minecraft.util.Mth;
+import java.util.Random;
+
 @Mod.EventBusSubscriber(modid = AutoBuild.MOD_ID, value = Dist.CLIENT)
 public class AutoBuildHandler {
     
@@ -33,10 +36,22 @@ public class AutoBuildHandler {
     private static int currentBlockIndex = 0;
     private static BlockPos buildOrigin = null;
     private static Map<BlockPos, String> targetPositions = null;
+    private static final Random RANDOM = new Random();
+    private static int currentJitterDelay = 0;
 
     @SubscribeEvent
     public static void onClientTick(TickEvent.ClientTickEvent event) {
         if (event.phase != TickEvent.Phase.END) {
+            return;
+        }
+
+        Minecraft mc = Minecraft.getInstance();
+        if (mc == null) return;
+        
+        LocalPlayer player = mc.player;
+        Level level = mc.level;
+
+        if (player == null || level == null) {
             return;
         }
 
@@ -45,11 +60,7 @@ public class AutoBuildHandler {
             return;
         }
 
-        Minecraft mc = Minecraft.getInstance();
-        LocalPlayer player = mc.player;
-        Level level = mc.level;
-
-        if (player == null || level == null || mc.screen != null) {
+        if (mc.screen != null) {
             return;
         }
 
@@ -66,10 +77,22 @@ public class AutoBuildHandler {
         int buildDelay = 11 - AutoBuildConfig.getBuildSpeed();
         tickCounter++;
         
-        if (tickCounter < buildDelay) {
+        int totalDelay = buildDelay;
+        if (AutoBuildConfig.isAntiCheatProtection()) {
+            totalDelay += currentJitterDelay;
+        }
+
+        if (tickCounter < totalDelay) {
             return;
         }
         tickCounter = 0;
+        
+        if (AutoBuildConfig.isAntiCheatProtection()) {
+            // Add random jitter between 0 and 2 ticks to break rhythmic placement
+            currentJitterDelay = RANDOM.nextInt(3);
+        } else {
+            currentJitterDelay = 0;
+        }
 
         if (SelectionManager.hasFixedHitbox()) {
             buildOrigin = SelectionManager.getFixedHitboxOrigin().above();
@@ -101,10 +124,34 @@ public class AutoBuildHandler {
                 }
                 ItemStack heldItem = player.getMainHandItem();
                 if (heldItem.getItem() instanceof BlockItem) {
-                    placeBlockAt(mc, player, level, nextBlock.getKey(), heldItem);
+                    if (AutoBuildConfig.isAntiCheatProtection()) {
+                        rotateAndPlace(mc, player, level, nextBlock.getKey(), heldItem);
+                    } else {
+                        placeBlockAt(mc, player, level, nextBlock.getKey(), heldItem);
+                    }
                 }
             }
         }
+    }
+
+    private static void rotateAndPlace(Minecraft mc, LocalPlayer player, Level level, BlockPos pos, ItemStack heldItem) {
+        // Calculate rotations to face the block center
+        double dx = (pos.getX() + 0.5) - player.getX();
+        double dy = (pos.getY() + 0.5) - (player.getY() + player.getEyeHeight());
+        double dz = (pos.getZ() + 0.5) - player.getZ();
+        double distanceXZ = Math.sqrt(dx * dx + dz * dz);
+
+        float targetYaw = (float) (Mth.atan2(dz, dx) * (180.0 / Math.PI)) - 90.0f;
+        float targetPitch = (float) (-(Mth.atan2(dy, distanceXZ) * (180.0 / Math.PI)));
+
+        // Set player rotations (client-side only, but helps with anti-cheat checks that track look direction)
+        player.setYRot(targetYaw);
+        player.setXRot(targetPitch);
+        player.yRotO = targetYaw;
+        player.xRotO = targetPitch;
+
+        placeBlockAt(mc, player, level, pos, heldItem);
+        player.swing(InteractionHand.MAIN_HAND);
     }
 
     private static Map.Entry<BlockPos, String> findNextBuildablePosition(LocalPlayer player, Level level, Map<BlockPos, String> positions) {

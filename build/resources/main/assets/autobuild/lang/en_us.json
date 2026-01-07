@@ -75,8 +75,6 @@
 "key.autobuild.hitbox.left": "Hitbox left moved",
 "key.autobuild.hitbox.right": "Hitbox moved right",
 "key.autobuild.hitbox.up": "Hitbox moved up",
-"key.autobuild.hitbox.down": "Hitbox moved down",
-"screen.autobuild.protection.on":"Protection: ON",
-"screen.autobuild.protection.off":"Protection: OFF"
+"key.autobuild.hitbox.down": "Hitbox moved down"
 
 }

@@ -44,8 +44,7 @@ public class AutoBuild {
         NetworkHandler.register();
         
         event.enqueueWork(() -> {
-            StructureManager.ensureDirectoryExists();
-            StructureManager.loadStructures();
+            // Moved to client side logic to avoid server-side crashes
         });
     }
 

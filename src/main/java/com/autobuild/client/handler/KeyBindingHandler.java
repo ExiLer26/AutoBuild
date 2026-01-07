@@ -3,6 +3,7 @@ package com.autobuild.client.handler;
 import com.autobuild.AutoBuild;
 import com.autobuild.client.gui.AutoBuildScreen;
 import com.autobuild.common.config.AutoBuildConfig;
+import com.autobuild.common.data.StructureManager;
 import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
@@ -117,7 +118,9 @@ hitboxDownKey = new KeyMapping(
     
     public static void register() {
         MinecraftForge.EVENT_BUS.register(new KeyBindingHandler());
-        AutoBuild.LOGGER.info("KeyBindingHandler registered");
+        StructureManager.ensureDirectoryExists();
+        StructureManager.loadStructures();
+        AutoBuild.LOGGER.info("KeyBindingHandler registered and structures loaded");
     }
 
     @Mod.EventBusSubscriber(modid = AutoBuild.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)

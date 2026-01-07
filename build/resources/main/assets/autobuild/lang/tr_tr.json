@@ -80,8 +80,6 @@
 "key.autobuild.hitbox.left": "Hitbox sol taşındı",
 "key.autobuild.hitbox.right": "Hitbox sağ taşındı",
 "key.autobuild.hitbox.up": "Hitbox yukarı taşındı",
-"key.autobuild.hitbox.down": "Hitbox aşağı taşındı",
-"screen.autobuild.protection.on": "Koruma: Açık",
-"screen.autobuild.protection.off":"Koruma: Kapalı"
+"key.autobuild.hitbox.down": "Hitbox aşağı taşındı"
 
 }

@@ -1,0 +1,25 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+license="MIT"
+issueTrackerURL=""
+
+[[mods]]
+modId="autobuild"
+version="1.0.0"
+displayName="autobuild"
+authors="Replit AI"
+description='''AutoBuild mod for Minecraft'''
+
+[[dependencies.autobuild]]
+    modId="forge"
+    mandatory=true
+    versionRange="[47,48)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.autobuild]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.20.1,1.21)"
+    ordering="NONE"
+    side="BOTH"
